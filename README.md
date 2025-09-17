@@ -7,14 +7,18 @@
 
 ## Download & Run the Docs Locally 
 
-### 1. Install Hugo
+### 1. Install Hugo v0.122.0
 
-[Hugo](https://gohugo.io/) is a golang static site generator.
+[Hugo](https://gohugo.io/) is a golang static site generator. This project has not been updated to support the latest version of Hugo. The below instructions will guide you on how to install the last known working version `0.122.0`.
 
 1. Open a terminal.
-2. Run the following or view their [official quickstart guide](https://gohugo.io/getting-started/quick-start/):
+2. Visit the release page for [Hugo v0.122.0](https://github.com/gohugoio/hugo/releases/tag/v0.122.0).
+3. Download the corresponding binary from the 'assets' section.
+4. On a MacOS terminal, you can run the following:
     ```s
-    brew install hugo
+       curl -OL https://github.com/gohugoio/hugo/releases/download/v0.122.0/hugo_extended_0.122.0_darwin-universal.tar.gz
+       mkdir hugo && tar -xvf hugo_extended_0.122.0_darwin-universal.tar.gz -C hugo
+       sudo cp hugo/hugo /usr/local/bin
     ```
 
 ### 2. Install This Repository
@@ -46,7 +50,15 @@ To handle the varying nuances required by both doc sites (theming, content varia
    git submodule update
    ```
 
-### 3. Build! 
+### 3. Install NPM
+1. Open a terminal.
+2. Run the following:
+    ```s
+    brew install npm
+    npm install algoliasearch@4.15.0 
+    ```
+
+### 4. Build! 
 
 1. Open a terminal.
 2. Navigate into the `/docs ` root directory. 
