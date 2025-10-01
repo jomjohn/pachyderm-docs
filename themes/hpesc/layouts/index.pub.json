@@ -1,0 +1,10 @@
+ { 
+  
+ "content_type" : "htmlzip",
+  "full_title" : "Pachyderm 2.9.x Documentation",
+  "description" : "Software for building and managing production data pipelines, especially for machine learning (ML) and artificial intelligence (AI) applications. Pachyderm is used by data science and engineering teams to operationalize their ML workflows.",
+  "language_code" : "en_US",
+  "content_version" : "2.9.x",
+  "products": ["1012660985"],
+  "landing_page_style" : "Tile"
+}

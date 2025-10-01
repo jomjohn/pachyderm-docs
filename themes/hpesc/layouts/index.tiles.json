@@ -1,0 +1,47 @@
+{ "tilesContent" : 
+  [ 
+   { "title" : "Get Started",
+    "description" : "    ",
+    "url" : "latest/get-started.html",
+    "links" : 
+    [{ "name" : "Beginner Tutorial",
+      "url" : "latest/get-started/beginner-tutorial.html" },
+      { "name" : "First-Time Setup",
+      "url" : "latest/get-started/first-time-setup.html" },
+      { "name" : "Connect to Existing Instance",
+      "url" : "latest/get-started/connect-to-existing.html" },
+      { "name" : "Language Clients",
+      "url" : "latest/get-started/clients.html" }]
+  },
+   { "title" : "Announcements",
+    "url" : "GUID-A34E1C6D-809E-47F0-B274-1F6CA5285A0E=3=en-US=.html",
+    "links" : 
+    [ 
+     { "name" : "Pachyderm 2.9.4 is out! Download it here.",
+      "url" : "https://github.com/pachyderm/pachyderm/releases/tag/v2.9.4" },
+     
+     { "name" : "The next minor release, 2.10, will require Postgres 15 or later.",
+      "url" : "https://github.com/pachyderm/pachyderm/releases/tag/v2.10.0" },
+
+     { "name" : "View our new Changelog!",
+      "url" : "changelog.html" } ]
+    },
+   
+   { "title" : "Tutorials: Data Preparation",
+    "url" : "",
+    "links" : 
+    [ { "name" : "Volume Mounting",
+      "url" : "latest/prepare-data/mount-volume.html" },
+      { "name" : "Datum Batching",
+      "url" : "latest/prepare-data/datum-batching.html" },
+      { "name" : "File Data Ingestion",
+      "url" : "latest/prepare-data/ingest-data.html" },
+      { "name" : "SQL Data Ingestion",
+      "url" : "latest/prepare-data/sql-ingest.html" },
+      { "name" : "Transactions",
+      "url" : "latest/prepare-data/transactions.html" }
+      
+    ] }
+
+  ]
+}

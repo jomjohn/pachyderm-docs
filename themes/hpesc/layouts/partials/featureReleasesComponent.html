@@ -1,0 +1,25 @@
+{{- $releases := (where .Site.RegularPages "Section" "==" "changelog").ByDate.Reverse -}}
+
+
+<section class="m-6">
+  {{- range $release := $releases -}}
+  {{- if ne $release.Params.hidden true -}}
+  <article class="spread">
+    <div class="stack">
+      <h2> {{ $release.Title }} ({{-  $release.Params.releaseType -}}) <a href="{{$release.Params.fullReleaseNotes}}"> <img src="/images/github.svg" height="15px" class="" alt="GitHub"> </a></h2>
+    
+      <div >
+        {{- $release.Content -}}
+      </div>
+    </div>
+  </article>
+  {{- end -}}
+  {{- end -}}
+</section>
+
+<p class="text-center content">
+  For releases older than 2.5.5, <br>
+  check out the <a href="https://github.com/pachyderm/pachyderm/releases/">full release changelog</a> on GitHub.
+</p>
+
+

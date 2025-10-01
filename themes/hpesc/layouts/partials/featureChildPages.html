@@ -1,0 +1,29 @@
+{{/* 
+    - Displays child pages with titles, descriptions/summaries, & links to up to 7 children (or a count of children) 
+*/}}
+
+
+{{ if .Site.Params.childPages.display}}
+    {{if .Pages }}
+        <div class="hpesc_tiles_wrapper">
+            <div class="hpesc_tiles">
+            {{ range sort .Pages "Weight" "$order"}}
+                {{ if  .Params.hidden }}
+                    {{/* Do not show the hidden child page or its descendants */}}
+                {{else}}
+                    <div class="hpesc_tile">
+                            <div class="hpesc_tile_title">
+                                <a href="{{.RelPermalink}}">{{- .Title -}}</a>
+                            </div>
+                            {{if .Description}}
+                            <div class="hpesc_tile_shortdesc">{{.Description}}</div>
+                            {{else}}
+                                        <div class="hpesc_tile_description">{{.Summary | truncate 100}}</div>
+                            {{end}}
+                    </div>
+                {{end}}
+            {{end}}
+            </div>
+        </div>
+    {{end}}
+{{end}}

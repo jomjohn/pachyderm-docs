@@ -1,0 +1,35 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+<meta name="title" content="{{with .Parent}}{{.Title}}{{end}}: {{ .Title }}" />
+<meta name="description" content="{{ .Description }}" />
+<meta name="keywords" content="{{ .Keywords }}" />
+<meta name="author" content="{{ .Params.author }}" />
+<meta name="generator" content="Hugo v0.110.0">
+
+{{if eq .Section .Site.Params.releaseInfo.latest }}
+<link rel="canonical" href="{{.Permalink}}" />
+{{end}}
+
+{{ template "_internal/opengraph.html" . }}
+{{ template "_internal/twitter_cards.html" . }}
+
+{{if .Site.Params.defaultCss}} 
+    {{$defaultEmdash := resources.Get "css/defaultEmdash.css" | resources.Minify}}
+    {{ $defaultCss := slice $defaultEmdash | resources.Concat "css/defaultBundle.css"}}
+    <link rel="stylesheet" href="{{ $defaultCss.RelPermalink }}" media="screen" />
+{{else}}
+    {{/*  themes/pach-emdash/assets/css/..  */}}
+    {{ $emdash := resources.Get "css/emdash.css" | resources.Minify }}
+    {{ $widescreen := resources.Get "css/widescreen.css" | resources.Minify }}
+    {{ $font := resources.Get "css/font.css" | resources.Minify }}
+    {{ $syntax := resources.Get "css/syntax.css" | resources.Minify }}
+    {{/*  Aggregates minified css into one resource  */}}
+    {{ $css := slice $emdash $font $widescreen $syntax | resources.Concat "css/bundle.css"}}
+    <link rel="stylesheet" href="{{ $css.RelPermalink }}" media="screen" />
+    <link rel="shortcut icon" href="/images/favicon.ico">
+{{end}}
+    
+
+
+<title>Pachyderm Docs: {{.Title}}</title>
+<link rel="alternate" href="https://docs.pachyderm.com{{.Permalink}}" hreflang="en"/>

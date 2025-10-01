@@ -1,0 +1,7 @@
+{{$type := .Get 0 | lower}}
+
+<div class="note {{$type}} note_{{$type}}"> 
+    <div class="note__title"> {{ upper $type }} </div>
+    {{ .Inner }}
+</div>
+

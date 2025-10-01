@@ -1,0 +1,25 @@
+{{/* 
+  - All pages first use the baseof template to begin building. See: https://gohugo.io/templates/base/ 
+  - "Blocks" provide a placeholder for inserting other content/templates generated later (e.g. single.html)
+*/}}
+
+<!DOCTYPE html>
+<html lang="en">
+    {{ partial "head.html" . }}
+    <body class="white"> 
+        {{/* partial "nav.html" . */}}
+            <div class="spread px-3">
+            {{ block "main" . }}{{end}}
+            </div>
+    </body>
+</html>
+
+
+
+
+
+
+
+
+
+

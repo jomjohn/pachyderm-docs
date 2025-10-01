@@ -1,0 +1,9 @@
+DirectoryPath: "public"
+IgnoreAltMissing: true
+EnforceHTTPS: false
+IgnoreURLs:
+- "example.com"
+- "^/misc/js/script.js$"
+IgnoreDirs:
+- "lib"
+CacheExpires: "6h"

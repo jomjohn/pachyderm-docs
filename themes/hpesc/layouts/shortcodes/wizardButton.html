@@ -1,0 +1,4 @@
+{{ $state := .Get "state" | lower}}
+<th style="padding-bottom: 10px; vertical-align: bottom; font-size: 1.4em; text-align:center; height: 40px;background-color: lightblue;">
+    <strong>{{ .Parent.Get "id" | title }}:</strong> {{ .Get "option" | title }}
+</th>

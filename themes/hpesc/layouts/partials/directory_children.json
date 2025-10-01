@@ -1,0 +1,20 @@
+{{- $item := . -}}
+{{- $children := slice -}}
+{{- if gt (len $item.Pages) 0 -}}
+  {{- range $child := $item.Pages -}}
+    {{- $link := $child.RelPermalink -}}
+    {{- if strings.HasPrefix $link "/" -}}
+      {{- $link = substr $link 1 -}}
+    {{- end -}}
+    {{- $childDict := dict
+      "title" $child.Title
+      "link" $link
+    -}}
+    {{- if gt (len $child.Pages) 0 -}}
+      {{- $childDict = merge $childDict (dict "children" (partial "directory_children.json" $child)) -}}
+    {{- end -}}
+    {{- $children = $children | append $childDict -}}
+  {{- end -}}
+  
+{{- end -}}
+{{- return $children -}}

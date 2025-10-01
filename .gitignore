@@ -5,3 +5,6 @@
 /netlify/edge-functions/.env
 /playground
 node_modules
+public
+tmp
+htmltest.exe

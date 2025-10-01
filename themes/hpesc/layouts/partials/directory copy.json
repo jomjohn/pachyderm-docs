@@ -1,0 +1,25 @@
+{{- $directory := dict -}}
+{{- if .IsHome -}}
+  {{- $latestSection := .Site.GetPage "section" "latest" -}}
+  {{- $links := slice -}}
+  {{- range $index, $item := $latestSection.Sections -}}
+    {{- $children := slice -}}
+    {{- if gt (len $item.Pages) 0 -}}
+      {{- range $child := $item.Pages -}}
+        {{- $children = $children | append (dict
+          "title" (cond (isset $child "Title") $child.Title (humanize (path.BaseName $child)))
+          "link" $child.RelPermalink
+        ) -}}
+      {{- end -}}
+    {{- end -}}
+    {{- $links = $links | append (dict
+      "title" (cond (isset $item "Title") $item.Title (humanize (path.BaseName $item)))
+      "link" $item.RelPermalink
+      "children" $children
+    ) -}}
+  {{- end -}}
+  {{- $directory = merge $directory (dict "default" "collapsed" "links" $links) -}}
+{{- end -}}
+{{ $directory | jsonify (dict "indent" "  ") }}
+
+ 

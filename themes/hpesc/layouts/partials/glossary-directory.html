@@ -1,0 +1,12 @@
+{{$latest := .Site.GetPage "section" "latest" }}
+
+<section class="pt-5 noscrollbar sticky is-one-fifth directory h-scroll px-3 is-hidden-mobile">
+  
+{{ template "directory" (dict "dir" $latest.Sections "current" .RelPermalink "parent" .Parent "section" .CurrentSection "level" "1")  }}
+
+</section>
+
+
+
+
+{{/*  todo: make logic to display pages with a new param: directory  */}}

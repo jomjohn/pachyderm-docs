@@ -1,0 +1,22 @@
+{{ $repo := .Get "repo" }}
+{{ $file := .Get "file" }}
+{{ $lines := .Get "lines" }}
+{{ $lang := .Get "lang" }}
+{{ $url := printf "https://api.github.com/repos/%s/contents/%s" $repo $file}}
+
+{{ $resource := resources.GetRemote $url (dict 
+    "headers" (dict 
+        "Content-Type" "application/json"
+    )
+    "query" (dict 
+        "ref" "main"
+    )
+)}} 
+
+{{ $resource | base64Decode | highlight $lang $lines }}
+
+
+
+{{ $local := resources.Get "sass/main.scss" }}
+
+

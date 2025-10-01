@@ -1,0 +1,23 @@
+{{- $directory := dict -}}
+{{- if .IsHome -}}
+  {{- $latestSection := .Site.GetPage "section" "latest" -}}
+  {{- $links := slice -}}
+  {{- range $index, $item := $latestSection.Sections -}}
+    {{- $itemDict := dict
+      "title" $item.Title
+      "link" $item.RelPermalink
+    -}}
+    {{- if gt (len $item.Pages) 0 -}}
+      {{- $itemDict = merge $itemDict (dict "children" (partial "directory_children.json" $item)) -}}
+    {{- end -}}
+    {{- $links = $links | append $itemDict -}}
+
+  {{- end -}}
+  {{- $changlogdict := dict
+      "title" "Changelog"
+      "link" "changelog.html"
+    -}}
+  {{- $links = $links | append $changlogdict -}}
+  {{- $directory = merge $directory (dict "default" "collapsed" "links" $links) -}}
+{{- end -}}
+{{ $directory | jsonify (dict "indent" "  ") }}

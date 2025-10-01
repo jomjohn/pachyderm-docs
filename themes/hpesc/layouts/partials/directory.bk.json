@@ -1,0 +1,51 @@
+
+{{if .IsHome}}
+  {{/*  only show the section matching "latest"  */}}
+{
+  "default" : "collapsed",
+  "links" : [
+  {{ $latestSection := .Site.GetPage "section" "latest" }}
+  {{ template "directory" (dict "dir" $latestSection.Sections "current" .RelPermalink "parent" .Parent "section" .CurrentSection "level" "1")  }}
+  {{else}}
+  {{ template "directory" (dict "dir" .FirstSection.Sections "current" .RelPermalink "parent" .Parent "section" .CurrentSection "level" "1")  }}
+  {{end}}
+  {{ define "directory" }}
+    {{$currentpg := .}}
+      {{ range $index, $item := .dir }}
+        {{/* if and (not $item.Params.hidden) (or (eq $item.BundleType "branch") ($item.Params.directory) ) */}}
+            {
+              "title": "{{if $item.Title}}{{$item.Title}}{{else}}{{ path.BaseName $item | humanize }}{{end}}",
+              "link" : "{{$item.RelPermalink}}"{{ if gt (len $item.Pages) 0 }},
+                "children" : [{{ template "directory" (dict "dir" $item.Pages "current" $.current "parent" $item.Parent "section" $.section "level" "2") }}]
+              {{ end }}
+            }{{ if not (eq (add $index 1) (len $.dir)) }},{{ end }}
+      {{ end }}
+    {{ end }}
+  ]
+}
+    {{/* else }}
+      {
+        "child" : "{{if $item.Title}}{{$item.Title}}{{else}}{{ path.BaseName $item | humanize }}{{end}}"
+      }{{ if not (eq (add $index 1) (len $.dir)) }},{{ end }}
+    {{ end */}}
+
+{{/*
+		"title": "{{if .Title}}{{- .Title -}}{{else}}{{- humanize .File.TranslationBaseName -}}{{end}}",
+		"version": {{- .Section  | jsonify -}},
+		"isLatest":"{{if eq .Site.Params.releaseInfo.Latest .Section}}Latest{{else}}{{end}}",
+		"pageKind": {{- .Kind  | jsonify -}},
+		"parent": "{{with .Parent}}{{- .Title -}}{{end}}",
+		"description": {{- .Description | jsonify -}},
+		"date": "{{ .Date | time.Format ":date_long" }}",
+		"uri": "{{ .Permalink }}",
+		"relURI": "{{ .RelPermalink }}",
+		"body": {{ .Plain | jsonify }},
+		"beta": "{{ .Params.beta}}",
+		"hidden": "{{ .Params.hidden}}",
+		"categories": [{{ range $cindex, $cat := .Params.categories }}{{ if $cindex }}, {{ end }}"{{ $cat| htmlEscape }}"{{ end }}],
+		"tags": [{{- range $tindex, $tag := .Params.tags -}}{{ if $tindex }}, {{ end }}"{{- $tag| htmlEscape -}}"{{- end -}}],
+		"id": {{ with .File }}{{- .UniqueID | jsonify -}}{{else}}""{{ end }}
+*/}}
+
+
+{{/*  todo: make logic to display pages with a new param: directory  */}}
